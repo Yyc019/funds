@@ -1,0 +1,45 @@
+import org.apache.tools.ant.taskdefs.condition.Os
+
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.0.2'
+	id 'io.spring.dependency-management' version '1.1.0'
+}
+
+group = 'CRUD_DEMO'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	//for mockmvc test
+	implementation "org.glassfish:javax.el:3.0.0"
+
+	//db
+	implementation('org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.1')
+	implementation('com.zaxxer:HikariCP:5.0.1')
+	implementation('org.springframework.boot:spring-boot-starter-jdbc')
+	implementation('org.postgresql:postgresql:42.5.0')
+	implementation('p6spy:p6spy:3.9.1')
+
+	//common
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	implementation('org.apache.commons:commons-lang3:3.12.0')
+	implementation('net.sf.json-lib:json-lib:2.4:jdk15')
+
+	//Swagger2
+	implementation 'io.springfox:springfox-boot-starter:3.0.0'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
